@@ -41,7 +41,7 @@ Employee::~Employee()
 {
 	//No code needed for the destructor because no dynamic allocation.
 
-	std::cout << "\t\t**Employee Destructor Called.**\n";
+	//std::cout << "\t\t**Employee Destructor Called.**\n";
 }
 
 void Employee::setFirstName(std::string first)

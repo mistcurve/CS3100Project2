@@ -2,7 +2,7 @@
 #include <fstream>
 #include "SStack.h"
 
-#define PROMPT "1. Push Script\n2. Pop Employee From Stack\n3. Get Top Employee From Stack\n4. Unions Two Stack Together (does not use stack from other functions)\n5. Prints All Employees in the Stack\n6. Saves All Employees in Stack to A File\n7. Quit\n"
+#define PROMPT "1.Push Script\n2. Pop Employee From Stack\n3. Get Top Employee From Stack\n4. Unions Two Stack Together (does not use stack from other functions)\n5. Prints All Employees in the Stack\n6. Saves All Employees in Stack to A File\n7. Quit\n"
 
 using namespace std;
 

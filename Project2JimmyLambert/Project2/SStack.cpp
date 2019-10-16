@@ -16,7 +16,7 @@ SStack::SStack(const SStack& s)
 
 SStack::~SStack()
 {
-	delete DynamicStack;
+	delete[] DynamicStack;
 }
 
 void SStack::push(const Employee person)
@@ -39,6 +39,7 @@ Employee SStack::pop()
 		Employee temp;
 		temp = this->DynamicStack[this->used - 1];
 		used--;
+		return temp;
 	}
 	else
 	{
@@ -74,7 +75,7 @@ void SStack::print() const
 		int i = this->used - 1;
 		while (i >= 0)
 		{
-			cout << DynamicStack[i--] << endl;
+			cout << DynamicStack[i--];
 		}
 		cout << "Bottom of Stack" << endl;
 
