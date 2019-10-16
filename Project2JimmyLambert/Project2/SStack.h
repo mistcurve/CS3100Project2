@@ -39,7 +39,7 @@ public:
 	int size() const;
 	int getCapacity() const;
 
-
+	friend SStack operator +(const SStack& s1, const SStack& s2);
 private:
 	int Capacity; // Capacity is the maximum number of items that a stack can hold
 	Employee* DynamicStack;
