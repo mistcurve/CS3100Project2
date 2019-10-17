@@ -82,7 +82,7 @@ void SStack::print() const
 	}
 	else
 	{
-		cout << "No elements to print in this stack.";
+		cout << "No elements to print in this stack." << endl;
 	}
 }
 

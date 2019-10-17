@@ -19,6 +19,32 @@ int main()
 	cout << "What should the maximum capacity of the stack be? ";
 	cin >> response;
 	SStack stack = SStack(response);
+	cout << "How many employees should be pushed to the stack (Must be less than max capacity)? " << endl;
+	cin >> response;
+	ifstream infile;
+	infile.open("Employee-Database.txt", ios::in);
+	for (int i = 0; i < response; i++)
+	{
+		Employee temp;
+		infile >> temp;
+		cout << temp;
+		stack.push(temp);
+		if (infile.eof())
+		{
+			cout << "No more employees to read in the file. stopping action.\n" << i + 1 << " Employees read and wrote.\n";
+			break;
+		}
+	}
+
+	cout << "Testing copy constructor, here is the original stack:" << endl;
+	stack.print();
+	SStack copyStack = SStack(stack);
+	cout << "This is the copy of the stack:" << endl;
+	copyStack.print();
+
+
+
+	
 	do
 	{
 		cout << PROMPT;
@@ -64,6 +90,14 @@ void pushScript(SStack* stack)
 	Employee e;
 	cin >> e;
 	stack->push(e);
+	cout << "Stack Size: " << stack->size() << endl;
+	cout << "Printing top 5 elements of the stack (if possible)" << endl;
+	SStack sCopy = SStack(*stack);
+	for (int i = 0; i < 5 && !(sCopy.top() == Employee()); i++)
+	{
+		Employee e = sCopy.pop();
+		cout << e;
+	}
 }
 
 void popScript(SStack* stack)
@@ -75,7 +109,8 @@ void popScript(SStack* stack)
 	if (i > stack->size())
 	{
 		cout << "Stack does not contain " << i << " employees, popping " << stack->size() << " instead." << endl;
-		for (int j = 0; j < stack->size(); j++)
+		i = stack->size();
+		for (int j = 0; j < i; j++)
 		{
 			Employee e = stack->pop();
 			cout << e;
@@ -100,6 +135,7 @@ void topScript(SStack* stack)
 	cout << "Displaying the top item of the stack:" << endl;
 	Employee e = stack->pop();
 	cout << e;
+	cout << "There are " << stack->size() << " elements left in the stack" << endl;
 }
 
 void unionScript(SStack* stack)
@@ -112,21 +148,13 @@ void unionScript(SStack* stack)
 	s0.push(e);
 	e = Employee(3829, "John", "Cena");
 	s0.push(e);
-	SStack s1 = SStack(5);
-	e = Employee(3304, "Big", "Mac");
-	s1.push(e);
-	e = Employee(8362, "David", "Tennant");
-	s1.push(e);
-	e = Employee(1123, "Micheal", "Sheen");
-	s1.push(e);
-	e = Employee(1173, "Neil", "Gaiman");
-	s1.push(e);
+
 	cout << "Combining the two following stacks into one stack..." << endl;
-	cout << "Stack1:" << endl;
-	s0.print();
+	cout << "Stack1 (from rest of program):" << endl;
+	stack->print();
 	cout << "Stack2:" << endl;
-	s1.print();
-	SStack s2 = s0 + s1;
+	s0.print();
+	SStack s2 = *stack + s0;
 	cout << "Stack3, Union of Stack1 and Stack2:" << endl;
 	s2.print();
 }
